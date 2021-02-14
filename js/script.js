@@ -52,11 +52,13 @@ const selectItem = (event, img) => {
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    alert('Hey, Already added !')
+    
+  } 
+  else {
+    
   }
 }
-var timer
+let timer;
 const createSlider = () => {
   // check slider image length
   if (sliders.length < 2) {
@@ -76,7 +78,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  let duration = document.getElementById('duration').value || 1000;
+  let duration =Math.abs(document.getElementById('duration').value)|| 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -87,13 +89,8 @@ const createSlider = () => {
   })
   changeSlide(0)
   timer = setInterval(function () {
-      if(slideIndex>0){
-        changeSlide(slideIndex)
-      }
-      else{
         slideIndex++;
         changeSlide(slideIndex);
-    }
   }, duration);
 }
 
