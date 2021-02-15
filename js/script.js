@@ -28,11 +28,10 @@ const showImages = (images) => {
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
-      console.log(image);
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-    gallery.appendChild(div)
+    gallery.appendChild(div);
   })
 
 }
@@ -47,17 +46,19 @@ const getImages = query => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
- 
+  element.classList.toggle('added');
+  
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
     
-  } 
-  else {
-    
+  } else {
+    let deselect = sliders.indexOf(img);
+    sliders.splice(deselect,1);
+  
   }
-}
+  
+};
 let timer;
 const createSlider = () => {
   // check slider image length
@@ -131,3 +132,11 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+// Spinner For Js
+const toggleSpinner = () => {
+  const spinner = document.getElementById('loading-spinner');
+  const imagesArea = document.querySelector('.images');
+  spinner.toggle('d-none');
+  imagesArea.toggle('d-none');
+
+};
